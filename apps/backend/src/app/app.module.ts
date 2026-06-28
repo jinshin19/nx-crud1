@@ -3,6 +3,8 @@ import * as mongoose from "mongoose";
 import { ConfigModule } from "@nestjs/config";
 import { Inject, Module, OnModuleInit } from "@nestjs/common";
 import { getConnectionToken, MongooseModule } from "@nestjs/mongoose";
+// Modules
+import { AuthModule } from "./auth/auth.module";
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -10,6 +12,8 @@ import { getConnectionToken, MongooseModule } from "@nestjs/mongoose";
       envFilePath: `apps/backend/src/environment/.env.${process.env.NODE_ENV}`,
     }),
     MongooseModule.forRoot(process.env.CRUD1_DATABASE_CONNECTION_1!),
+    // Modules
+    AuthModule,
   ],
   controllers: [],
   providers: [],
