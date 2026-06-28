@@ -1,10 +1,34 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
+// NestJs Imports
+import * as mongoose from "mongoose";
+import { ConfigModule } from "@nestjs/config";
+import { Inject, Module, OnModuleInit } from "@nestjs/common";
+import { getConnectionToken, MongooseModule } from "@nestjs/mongoose";
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `apps/backend/src/environment/.env.${process.env.NODE_ENV}`,
+    }),
+    MongooseModule.forRoot(process.env.CRUD1_DATABASE_CONNECTION_1!),
+  ],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  constructor(
+    @Inject(getConnectionToken())
+    private connection: mongoose.Connection,
+  ) {}
+
+  public onModuleInit() {
+    this.connection.on("connected", () =>
+      console.log(`Database is connected in ${process.env.NODE_ENV} module`),
+    );
+    this.connection.on("disconnected", () =>
+      console.log(`Database is disconnected in ${process.env.NODE_ENV} module`),
+    );
+    this.connection.on("error", () =>
+      console.log(`Database has error in ${process.env.NODE_ENV} module`),
+    );
+  }
+}

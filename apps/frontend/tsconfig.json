@@ -8,11 +8,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -23,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "outDir": "dist",
     "rootDir": "src",
@@ -38,7 +32,8 @@
     "src/**/*.jsx",
     "../../apps/frontend/.next/types/**/*.ts",
     "../../dist/apps/frontend/.next/types/**/*.ts",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    "global.css.d.ts"
   ],
   "exclude": [
     "out-tsc",
