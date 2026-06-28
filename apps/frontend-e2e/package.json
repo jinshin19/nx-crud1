@@ -1,0 +1,10 @@
+{
+  "name": "@crud1/frontend-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@crud1/frontend"
+    ]
+  }
+}
