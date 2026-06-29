@@ -1,6 +1,8 @@
-import { Controller, HttpCode, Post } from "@nestjs/common";
-import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, HttpCode, Post } from "@nestjs/common";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { AuthService } from "./auth.service";
+import { JoiPipe } from "nestjs-joi";
+import { RegisterDTO } from "./dto";
 
 // @ApiBearerAuth("")
 @ApiTags("Auth")
@@ -18,7 +20,7 @@ export class AuthController {
   @Post("register")
   @HttpCode(201)
   @ApiOperation({ summary: "Register new user" })
-  public async register() {
-    return this.authService.login();
+  public async register(@Body(JoiPipe) payload: RegisterDTO) {
+    return this.authService.register(payload);
   }
 }

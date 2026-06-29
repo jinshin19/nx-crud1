@@ -16,6 +16,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@crud1/source"]
+    "customConditions": ["@crud1/source"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }

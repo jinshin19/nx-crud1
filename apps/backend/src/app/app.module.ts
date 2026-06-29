@@ -5,6 +5,8 @@ import { Inject, Module, OnModuleInit } from "@nestjs/common";
 import { getConnectionToken, MongooseModule } from "@nestjs/mongoose";
 // Modules
 import { AuthModule } from "./auth/auth.module";
+import { HttpExceptionFilter } from "@crud1/shared";
+import { APP_FILTER } from "@nestjs/core";
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,7 +18,12 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
 export class AppModule implements OnModuleInit {
   constructor(
