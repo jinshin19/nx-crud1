@@ -73,7 +73,6 @@
   },
   "workspaces": [
     "apps/*",
-    "library",
     "shared"
   ]
 }
