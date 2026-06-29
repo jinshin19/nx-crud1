@@ -1,5 +1,6 @@
 // Constants
 export const UserGenderC = ["male", "female"] as const;
+export const UserRoleSC = ["client", "agent", "admin"];
 
 // NestJs Imports
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
@@ -8,11 +9,11 @@ import { SYSTEM_ID } from "../../utils/id.utils.js";
 // Schema options
 import { schemaOptions } from "../schema.options.js";
 
-export const RLCN = "rl-users";
+export const RLUsersCN = "rl-users";
 
 @Schema({
   ...schemaOptions,
-  collection: RLCN,
+  collection: RLUsersCN,
 })
 export class User {
   @Prop({ type: String, default: () => SYSTEM_ID() })
@@ -39,8 +40,8 @@ export class User {
   @Prop({ type: String, default: null })
   public readonly email?: string | null;
 
-  @Prop({ type: String, required: true })
-  public readonly role!: string;
+  @Prop({ type: String, enum: UserRoleSC, required: true })
+  public readonly role!: UserRolesT;
 
   @Prop({ type: String, default: null })
   public readonly photo?: string | null;
@@ -52,3 +53,4 @@ export class User {
 export const UserSchema = SchemaFactory.createForClass(User);
 
 export type UserGenderT = (typeof UserGenderC)[number];
+export type UserRolesT = (typeof UserRoleSC)[number];

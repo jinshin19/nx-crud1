@@ -5,10 +5,12 @@ import { ApiProperty } from "@nestjs/swagger";
 // Shared
 import {
   // Types
+  type UserRolesT,
   type UserGenderT,
   // Constants
-  JOI_MESSAGES,
+  UserRoleSC,
   UserGenderC,
+  JOI_MESSAGES,
 } from "@crud1/shared";
 
 export class RegisterDTO {
@@ -63,9 +65,15 @@ export class RegisterDTO {
   @ApiProperty({ example: "johndoe@gmail.com" })
   public readonly email?: string | null;
 
-  @JoiSchema(Joi.string().required().label("Role").messages(JOI_MESSAGES))
+  @JoiSchema(
+    Joi.string()
+      .required()
+      .valid(...UserRoleSC)
+      .label("Role")
+      .messages(JOI_MESSAGES),
+  )
   @ApiProperty({ example: "client" })
-  public readonly role!: string;
+  public readonly role!: UserRolesT;
 
   @JoiSchema(
     Joi.string().allow("").default(null).label("Photo").messages(JOI_MESSAGES),

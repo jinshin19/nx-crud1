@@ -3,6 +3,10 @@ export * from "./lib/utils/id.utils.js";
 
 // Schema
 export * from "./lib/schema/user/index.js";
+export * from "./lib/schema/property/index.js";
+export * from "./lib/schema/audit-log/index.js";
+export * from "./lib/schema/reservation/index.js";
+export * from "./lib/schema/transactions/index.js";
 
 // Constants
 export * from "./lib/constants/joi.constants.js";
