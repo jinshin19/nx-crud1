@@ -15,4 +15,5 @@ export * from "./lib/constants/joi.constants.js";
 export * from "./lib/handlers/response.handler.js";
 
 // Decorators
+export * from "./lib/decorator/http-interceptor.js";
 export * from "./lib/decorator/http-exception.filter.js";
